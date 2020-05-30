@@ -20,6 +20,9 @@
     <None Update="res\startup.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="res\unknown.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="startup.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

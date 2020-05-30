@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using System.Media;
 using System.Threading;
@@ -9,6 +10,31 @@ namespace button_processor
     {
         static bool s_continue = true;
         static SerialPort s_sp;
+
+        static readonly Dictionary<string, SoundPlayer> s_keySounds = new Dictionary<string, SoundPlayer>()
+        {
+            {"FFA25D", new SoundPlayer("res/unknown.wav")},
+            {"FF629D", new SoundPlayer("res/unknown.wav")},
+            {"FFE21D", new SoundPlayer("res/unknown.wav")},
+            {"FF22DD", new SoundPlayer("res/unknown.wav")},
+            {"FF02FD", new SoundPlayer("res/unknown.wav")},
+            {"FFC23D", new SoundPlayer("res/unknown.wav")},
+            {"FFE01F", new SoundPlayer("res/unknown.wav")},
+            {"FFA857", new SoundPlayer("res/unknown.wav")},
+            {"FF906F", new SoundPlayer("res/unknown.wav")},
+            {"FF6897", new SoundPlayer("res/unknown.wav")},
+            {"FF9867", new SoundPlayer("res/unknown.wav")},
+            {"FFB04F", new SoundPlayer("res/unknown.wav")},
+            {"FF30CF", new SoundPlayer("res/unknown.wav")},
+            {"FF18E7", new SoundPlayer("res/unknown.wav")},
+            {"FF7A85", new SoundPlayer("res/unknown.wav")},
+            {"FF10EF", new SoundPlayer("res/unknown.wav")},
+            {"FF38C7", new SoundPlayer("res/meow.wav")},
+            {"FF5AA5", new SoundPlayer("res/bark.wav")},
+            {"FF42BD", new SoundPlayer("res/unknown.wav")},
+            {"FF4AB5", new SoundPlayer("res/unknown.wav")},
+            {"FF52AD", new SoundPlayer("res/unknown.wav")}
+        };
 
         /// <summary>
         /// TODO
@@ -47,57 +73,21 @@ namespace button_processor
             readThread.Join();
             s_sp.Close();
         }
-        /*
-        const char* keyToString(const unsigned long& key)
-{
-  if (key == 0xFFA25D) return "CH-";
-  if (key == 0xFF629D) return "CH";
-  if (key == 0xFFE21D) return "CH+";
-  if (key == 0xFF22DD) return "PREV";
-  if (key == 0xFF02FD) return "NEXT";
-  if (key == 0xFFC23D) return "PLAY/PAUSE";
-  if (key == 0xFFE01F) return "VOL-";
-  if (key == 0xFFA857) return "VOL+";
-  if (key == 0xFF906F) return "EQ";
-  if (key == 0xFF6897) return "0";
-  if (key == 0xFF9867) return "100+";
-  if (key == 0xFFB04F) return "200+";
-  if (key == 0xFF30CF) return "1";
-  if (key == 0xFF18E7) return "2";
-  if (key == 0xFF7A85) return "3";
-  if (key == 0xFF10EF) return "4";
-  if (key == 0xFF38C7) return "5";
-  if (key == 0xFF5AA5) return "6";
-  if (key == 0xFF42BD) return "7";
-  if (key == 0xFF4AB5) return "8";
-  if (key == 0xFF52AD) return "9";
-}*/
+        
 
-    private static void Read()
+        private static void Read()
         {
             while (s_continue)
             {
-                try
-                {
-                    processKey(s_sp.ReadLine());
-                }
+                try { processKey(s_sp.ReadLine().TrimEnd()); }
                 catch (TimeoutException) { }
             }
         }
 
         private static void processKey(string key)
         {
-            if (key == "FF38C7\r")
-            {
-                var startupSoundPlayer = new SoundPlayer("res/meow.wav");
-                startupSoundPlayer.Play();
-            }
-
-            if (key == "FF5AA5\r")
-            {
-                var startupSoundPlayer = new SoundPlayer("res/bark.wav");
-                startupSoundPlayer.Play();
-            }
+            SoundPlayer sp;
+            if (s_keySounds.TryGetValue(key, out sp)) sp.Play();
         }
     }
 }
