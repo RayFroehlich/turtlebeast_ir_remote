@@ -11,6 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="res\bark.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="res\meow.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="res\startup.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="startup.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
