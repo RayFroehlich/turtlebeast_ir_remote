@@ -13,9 +13,9 @@ namespace button_processor
 
         static readonly Dictionary<string, SoundPlayer> s_keySounds = new Dictionary<string, SoundPlayer>()
         {
-            {"FFA25D", new SoundPlayer("res/unknown.wav")},
-            {"FF629D", new SoundPlayer("res/unknown.wav")},
-            {"FFE21D", new SoundPlayer("res/unknown.wav")},
+            {"FFA25D", new SoundPlayer("res/channel_down.wav")}, //CH-
+            {"FF629D", new SoundPlayer("res/unknown.wav")}, //CH
+            {"FFE21D", new SoundPlayer("res/channel_up.wav")}, //CH+
             {"FF22DD", new SoundPlayer("res/unknown.wav")},
             {"FF02FD", new SoundPlayer("res/unknown.wav")},
             {"FFC23D", new SoundPlayer("res/unknown.wav")},
@@ -25,15 +25,15 @@ namespace button_processor
             {"FF6897", new SoundPlayer("res/unknown.wav")},
             {"FF9867", new SoundPlayer("res/unknown.wav")},
             {"FFB04F", new SoundPlayer("res/unknown.wav")},
-            {"FF30CF", new SoundPlayer("res/unknown.wav")},
-            {"FF18E7", new SoundPlayer("res/unknown.wav")},
-            {"FF7A85", new SoundPlayer("res/unknown.wav")},
-            {"FF10EF", new SoundPlayer("res/unknown.wav")},
-            {"FF38C7", new SoundPlayer("res/meow.wav")},
-            {"FF5AA5", new SoundPlayer("res/bark.wav")},
-            {"FF42BD", new SoundPlayer("res/unknown.wav")},
-            {"FF4AB5", new SoundPlayer("res/unknown.wav")},
-            {"FF52AD", new SoundPlayer("res/unknown.wav")}
+            {"FF30CF", new SoundPlayer("res/unknown.wav")}, //1
+            {"FF18E7", new SoundPlayer("res/unknown.wav")}, //2
+            {"FF7A85", new SoundPlayer("res/unknown.wav")}, //3
+            {"FF10EF", new SoundPlayer("res/unknown.wav")}, //4
+            {"FF38C7", new SoundPlayer("res/meow.wav")}, //5
+            {"FF5AA5", new SoundPlayer("res/bark.wav")}, //6
+            {"FF42BD", new SoundPlayer("res/hello.wav")},//7
+            {"FF4AB5", new SoundPlayer("res/blah.wav")}, //8
+            {"FF52AD", new SoundPlayer("res/unknown.wav")} //9
         };
 
         /// <summary>
@@ -73,7 +73,6 @@ namespace button_processor
             readThread.Join();
             s_sp.Close();
         }
-        
 
         private static void Read()
         {
